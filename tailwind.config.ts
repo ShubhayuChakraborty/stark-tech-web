@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'orbitron': ['Orbitron', 'monospace'],
+				'exo': ['Exo 2', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,7 +65,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				/* Avengers Infinity Stones palette */
+				'power-stone': 'hsl(var(--power-stone))',
+				'space-stone': 'hsl(var(--space-stone))',
+				'reality-stone': 'hsl(var(--reality-stone))',
+				'time-stone': 'hsl(var(--time-stone))',
+				'soul-stone': 'hsl(var(--soul-stone))',
+				'mind-stone': 'hsl(var(--mind-stone))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
