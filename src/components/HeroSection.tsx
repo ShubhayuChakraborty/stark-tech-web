@@ -16,17 +16,50 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 bg-black/40" />
       
-      {/* Floating particles */}
-      <div className="absolute inset-0 particles">
-        {[...Array(20)].map((_, i) => (
+      {/* Enhanced particle effects */}
+      <div className="absolute inset-0 particles overflow-hidden">
+        {/* Large floating particles */}
+        {[...Array(30)].map((_, i) => (
           <div
-            key={i}
-            className="absolute w-2 h-2 bg-primary rounded-full opacity-60 animate-pulse"
+            key={`large-${i}`}
+            className="absolute rounded-full opacity-40 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 8 + 4}px`,
+              height: `${Math.random() * 8 + 4}px`,
+              background: `hsl(${[259, 217, 0][Math.floor(Math.random() * 3)]}, 94%, 65%)`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${5 + Math.random() * 5}s`
+            }}
+          />
+        ))}
+        
+        {/* Small twinkling stars */}
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={`star-${i}`}
+            className="absolute w-1 h-1 bg-white rounded-full opacity-60 animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
+          />
+        ))}
+
+        {/* Moving orbs */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`orb-${i}`}
+            className="absolute w-12 h-12 rounded-full opacity-20 animate-drift"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle, hsl(${[259, 217, 0][Math.floor(Math.random() * 3)]}, 94%, 65%), transparent)`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${10 + Math.random() * 10}s`
             }}
           />
         ))}

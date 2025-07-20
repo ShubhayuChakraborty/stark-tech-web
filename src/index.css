@@ -228,6 +228,21 @@
     }
   }
   
+  @keyframes drift {
+    0%, 100% { 
+      transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    25% { 
+      transform: translateX(30px) translateY(-30px) rotate(90deg);
+    }
+    50% { 
+      transform: translateX(-20px) translateY(-60px) rotate(180deg);
+    }
+    75% { 
+      transform: translateX(-40px) translateY(-30px) rotate(270deg);
+    }
+  }
+  
   /* Animation utilities */
   .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out;
@@ -235,5 +250,9 @@
   
   .animate-slide-in-right {
     animation: slide-in-right 0.8s ease-out;
+  }
+  
+  .animate-drift {
+    animation: drift 15s ease-in-out infinite;
   }
 }
