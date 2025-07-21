@@ -242,6 +242,25 @@
       transform: translateX(-40px) translateY(-30px) rotate(270deg);
     }
   }
+
+  @keyframes shooting-star {
+    0% { 
+      opacity: 0;
+      transform: translateX(-200px) translateY(200px) rotate(45deg) scaleX(0);
+    }
+    10% { 
+      opacity: 1;
+      transform: translateX(-100px) translateY(100px) rotate(45deg) scaleX(1);
+    }
+    90% { 
+      opacity: 1;
+      transform: translateX(800px) translateY(-800px) rotate(45deg) scaleX(1);
+    }
+    100% { 
+      opacity: 0;
+      transform: translateX(900px) translateY(-900px) rotate(45deg) scaleX(0);
+    }
+  }
   
   /* Animation utilities */
   .animate-fade-in-up {
@@ -254,5 +273,9 @@
   
   .animate-drift {
     animation: drift 15s ease-in-out infinite;
+  }
+
+  .animate-shooting-star {
+    animation: shooting-star 2.5s ease-out infinite;
   }
 }

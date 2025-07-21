@@ -16,50 +16,82 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 bg-black/40" />
       
-      {/* Enhanced particle effects */}
-      <div className="absolute inset-0 particles overflow-hidden">
-        {/* Large floating particles */}
-        {[...Array(30)].map((_, i) => (
+      {/* Enhanced floating particles with unique effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large glowing particles */}
+        {[...Array(12)].map((_, i) => (
           <div
             key={`large-${i}`}
-            className="absolute rounded-full opacity-40 animate-float"
+            className="absolute w-4 h-4 bg-primary/50 rounded-full animate-float shadow-[0_0_30px_rgba(var(--primary),0.6)]"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 8 + 4}px`,
-              height: `${Math.random() * 8 + 4}px`,
-              background: `hsl(${[259, 217, 0][Math.floor(Math.random() * 3)]}, 94%, 65%)`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 5}s`
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${4 + Math.random() * 4}s`,
+              filter: 'blur(0.5px)',
             }}
           />
         ))}
         
-        {/* Small twinkling stars */}
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-60 animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
-            }}
-          />
-        ))}
-
-        {/* Moving orbs */}
+        {/* Twinkling constellation */}
+        {[...Array(40)].map((_, i) => {
+          const colors = ['bg-primary/70', 'bg-secondary/70', 'bg-accent/70', 'bg-white/70'];
+          return (
+            <div
+              key={`star-${i}`}
+              className={`absolute w-1 h-1 ${colors[i % colors.length]} rounded-full animate-pulse`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                boxShadow: `0 0 10px currentColor`,
+              }}
+            />
+          );
+        })}
+        
+        {/* Floating energy orbs */}
         {[...Array(8)].map((_, i) => (
           <div
             key={`orb-${i}`}
-            className="absolute w-12 h-12 rounded-full opacity-20 animate-drift"
+            className="absolute w-6 h-6 bg-gradient-to-r from-primary/40 via-secondary/40 to-accent/40 rounded-full animate-drift shadow-[0_0_25px_rgba(var(--primary),0.4)]"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              background: `radial-gradient(circle, hsl(${[259, 217, 0][Math.floor(Math.random() * 3)]}, 94%, 65%), transparent)`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${10 + Math.random() * 10}s`
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+              filter: 'blur(1px)',
+            }}
+          />
+        ))}
+        
+        {/* Shooting stars */}
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={`shooting-${i}`}
+            className="absolute w-12 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80 animate-shooting-star"
+            style={{
+              left: `${-10 + Math.random() * 120}%`,
+              top: `${Math.random() * 60}%`,
+              animationDelay: `${Math.random() * 15 + 3}s`,
+              animationDuration: '2.5s',
+              transform: 'rotate(45deg)',
+            }}
+          />
+        ))}
+        
+        {/* Hexagonal tech elements */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={`hex-${i}`}
+            className="absolute w-8 h-8 border border-primary/30 rotate-45 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+              clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
             }}
           />
         ))}

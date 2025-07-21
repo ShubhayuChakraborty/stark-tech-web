@@ -41,7 +41,7 @@ const AboutSection = () => {
             </div>
             <p className="font-exo text-foreground mb-3">
               <span className="font-semibold">Full-Stack Developer</span><br />
-              Target: 8 LPA
+              Innovation-Driven Solutions
             </p>
             <p className="text-muted-foreground font-exo">
               Aspiring to become a versatile full-stack developer, capable of building end-to-end solutions that make a real impact.

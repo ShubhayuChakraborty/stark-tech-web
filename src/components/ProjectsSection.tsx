@@ -62,6 +62,7 @@ const ProjectsSection = () => {
               <Button 
                 variant="outline" 
                 className="font-orbitron font-bold glass border-secondary text-secondary hover:bg-secondary/20"
+                onClick={() => window.open('https://github.com/ShubhayuChakraborty/Wealth', '_blank')}
               >
                 <Github className="w-4 h-4 mr-2" />
                 Source Code
