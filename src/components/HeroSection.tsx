@@ -1,6 +1,9 @@
 import { ArrowDown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
+import MagneticButton from "./MagneticButton";
+import AdvancedTypography from "./AdvancedTypography";
+import TiltCard from "./TiltCard";
 
 const HeroSection = () => {
   const scrollToAbout = () => {
@@ -108,39 +111,53 @@ const HeroSection = () => {
             <Sparkles className="w-8 h-8 text-primary ml-3 animate-pulse" />
           </div>
           
-          <h1 className="font-orbitron font-black text-6xl md:text-8xl mb-6 gradient-text float">
-            SHUBHAYU
-            <br />
-            <span className="text-4xl md:text-6xl">CHAKRABORTY</span>
-          </h1>
           
-          <div className="glass-card max-w-2xl mx-auto mb-8 glow-hover">
-            <h2 className="font-exo text-xl md:text-2xl font-semibold text-secondary mb-2">
-              Full-Stack Developer
-              <span className="text-muted-foreground font-normal"> (in training)</span>
-            </h2>
-            <p className="font-orbitron text-lg md:text-xl font-bold text-accent">
-              "Assemble the Code. Build the Future."
-            </p>
-          </div>
+          <AdvancedTypography
+            text="SHUBHAYU"
+            variant="gradient"
+            className="font-orbitron font-black text-6xl md:text-8xl mb-2 block gradient-text-animated"
+          />
+          <AdvancedTypography
+            text="CHAKRABORTY"
+            variant="split"
+            className="font-orbitron font-black text-4xl md:text-6xl block gradient-text-animated"
+          />
+          
+          
+          <TiltCard className="max-w-2xl mx-auto mb-8">
+            <div className="glass-card-advanced p-6 glow-hover holographic">
+              <h2 className="font-exo text-xl md:text-2xl font-semibold text-secondary mb-2">
+                Full-Stack Developer
+                <span className="text-muted-foreground font-normal"> (in training)</span>
+              </h2>
+              <AdvancedTypography
+                text="Assemble the Code. Build the Future."
+                variant="glow"
+                className="font-orbitron text-lg md:text-xl font-bold"
+              />
+            </div>
+          </TiltCard>
+          
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
+            <MagneticButton 
               size="lg" 
-              className="font-orbitron font-bold glow-hover bg-primary hover:bg-primary/80"
+              className="font-orbitron font-bold"
               onClick={scrollToAbout}
+              strength={0.4}
             >
               Explore Mission
               <ArrowDown className="ml-2 w-5 h-5" />
-            </Button>
-            <Button 
+            </MagneticButton>
+            <MagneticButton 
               variant="outline" 
               size="lg" 
-              className="font-orbitron font-bold glass border-primary text-primary hover:bg-primary/20 glow-hover"
+              className="font-orbitron font-bold glass border-primary text-primary hover:bg-primary/20"
               onClick={() => window.open('https://wealth-ruby.vercel.app/', '_blank')}
+              strength={0.3}
             >
               View Project
-            </Button>
+            </MagneticButton>
           </div>
         </div>
       </div>

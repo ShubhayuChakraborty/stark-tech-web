@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Lenis from "@studio-freight/lenis";
+import InteractiveBackground from "@/components/InteractiveBackground";
+import MorphingShapes from "@/components/MorphingShapes";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -40,7 +42,9 @@ const Index = () => {
     };
   }, []);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <InteractiveBackground />
+      <MorphingShapes />
       <Navigation />
       <main>
         <div id="home">
