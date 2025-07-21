@@ -31,7 +31,7 @@ const AboutSection = () => {
                 <span className="font-semibold">B.Tech CSE (AI)</span><br />
                 Techno India University
               </p>
-              <p className="text-muted-foreground font-exo">
+              <p className="text-foreground font-exo">
                 Specializing in Artificial Intelligence and Machine Learning, building the foundation for next-gen technology solutions.
               </p>
             </div>
@@ -50,7 +50,7 @@ const AboutSection = () => {
                 <span className="font-semibold">Full-Stack Developer</span><br />
                 Innovation-Driven Solutions
               </p>
-              <p className="text-muted-foreground font-exo">
+              <p className="text-foreground font-exo">
                 Aspiring to become a versatile full-stack developer, capable of building end-to-end solutions that make a real impact.
               </p>
             </div>
@@ -68,7 +68,7 @@ const AboutSection = () => {
               <p className="font-exo text-foreground mb-3">
                 <span className="font-semibold">Interests & Inspirations</span>
               </p>
-              <ul className="text-muted-foreground font-exo space-y-1">
+              <ul className="text-foreground font-exo space-y-1">
                 <li>• Fan of MS Dhoni's leadership</li>
                 <li>• Marvel universe enthusiast</li>
                 <li>• Passionate about startups</li>

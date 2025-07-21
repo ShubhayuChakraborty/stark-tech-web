@@ -1,21 +1,72 @@
-import { Mail, Linkedin, Instagram, Facebook, Send, MessageSquare } from "lucide-react";
+import {
+  Mail,
+  Linkedin,
+  Instagram,
+  Facebook,
+  Send,
+  MessageSquare,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder - no backend required
-    alert('Message received! Will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
+      const response = await fetch(`${apiUrl}/api/contact/send`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "✅ Message Sent!",
+          description: "Thank you for reaching out. I'll get back to you soon!",
+          duration: 5000,
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        // Handle validation errors specifically
+        if (data.errors && data.errors.length > 0) {
+          const errorMessage = data.errors.join(", ");
+          throw new Error(`Validation failed: ${errorMessage}`);
+        }
+        throw new Error(data.message || "Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      console.log("Form data being sent:", formData);
+      toast({
+        title: "❌ Error",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to send message. Please try again later.",
+        variant: "destructive",
+        duration: 8000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -24,29 +75,29 @@ const ContactSection = () => {
       icon: Mail,
       url: "mailto:shubhayuchakraborty69@gmail.com",
       color: "primary",
-      hoverText: "shubhayuchakraborty69@gmail.com"
+      hoverText: "shubhayuchakraborty69@gmail.com",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "#",
+      url: "https://www.linkedin.com/in/shubhayu-chakraborty-b23855280/",
       color: "space-stone",
-      hoverText: "Connect on LinkedIn"
+      hoverText: "Connect on LinkedIn",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      url: "#",
+      url: "https://www.instagram.com/ms7shubhayu?igsh=dGx5dXN6c2Y1eTAw",
       color: "reality-stone",
-      hoverText: "Follow on Instagram"
+      hoverText: "Follow on Instagram",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      url: "#",
+      url: "https://www.facebook.com/share/1742rHxV2a/",
       color: "secondary",
-      hoverText: "Add on Facebook"
-    }
+      hoverText: "Add on Facebook",
+    },
   ];
 
   return (
@@ -57,7 +108,8 @@ const ContactSection = () => {
             INITIATE CONTACT
           </h2>
           <p className="text-muted-foreground font-exo text-lg max-w-2xl mx-auto">
-            Ready to assemble a great project? Let's connect and build something extraordinary together.
+            Ready to assemble a great project? Let's connect and build something
+            extraordinary together.
           </p>
         </div>
 
@@ -77,7 +129,9 @@ const ContactSection = () => {
                   type="text"
                   placeholder="Your Name"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="glass border-primary/30 font-exo"
                   required
                 />
@@ -87,7 +141,9 @@ const ContactSection = () => {
                   type="email"
                   placeholder="Your Email"
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="glass border-primary/30 font-exo"
                   required
                 />
@@ -96,17 +152,20 @@ const ContactSection = () => {
                 <Textarea
                   placeholder="Your Message"
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   className="glass border-primary/30 font-exo min-h-[120px]"
                   required
                 />
               </div>
-              <Button 
-                type="submit" 
-                className="w-full font-orbitron font-bold glow-hover bg-primary hover:bg-primary/80"
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full font-orbitron font-bold glow-hover bg-primary hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4 mr-2" />
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
@@ -123,7 +182,9 @@ const ContactSection = () => {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="font-exo font-semibold text-foreground">Email</p>
+                  <p className="font-exo font-semibold text-foreground">
+                    Email
+                  </p>
                   <p className="text-muted-foreground font-exo text-sm">
                     shubhayuchakraborty69@gmail.com
                   </p>
@@ -147,10 +208,16 @@ const ContactSection = () => {
                     title={social.hoverText}
                   >
                     <div className="flex flex-col items-center p-4">
-                      <div className={`w-12 h-12 bg-${social.color}/20 rounded-lg flex items-center justify-center mb-3 group-hover:bg-${social.color}/30 transition-colors`}>
-                        <social.icon className={`w-6 h-6 text-${social.color}`} />
+                      <div
+                        className={`w-12 h-12 bg-${social.color}/20 rounded-lg flex items-center justify-center mb-3 group-hover:bg-${social.color}/30 transition-colors`}
+                      >
+                        <social.icon
+                          className={`w-6 h-6 text-${social.color}`}
+                        />
                       </div>
-                      <span className="font-orbitron font-semibold text-sm">{social.name}</span>
+                      <span className="font-orbitron font-semibold text-sm">
+                        {social.name}
+                      </span>
                     </div>
                   </a>
                 ))}

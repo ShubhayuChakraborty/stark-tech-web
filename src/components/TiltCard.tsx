@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, ReactNode } from 'react';
+import { useRef, useEffect, ReactNode } from 'react';
 
 interface TiltCardProps {
   children: ReactNode;
