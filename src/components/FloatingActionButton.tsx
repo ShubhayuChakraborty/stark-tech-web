@@ -62,7 +62,9 @@ const FloatingActionButton = () => {
     try {
       const apiUrl =
         import.meta.env.VITE_API_URL ||
-        (import.meta.env.PROD ? "" : "http://localhost:3001");
+        (import.meta.env.PROD
+          ? window.location.origin
+          : "http://localhost:3001");
       const response = await fetch(`${apiUrl}/api/jarvis/chat`, {
         method: "POST",
         headers: {
