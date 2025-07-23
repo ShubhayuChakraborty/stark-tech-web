@@ -26,11 +26,19 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
+      // More robust production detection
+      const isProduction = import.meta.env.PROD || window.location.hostname !== 'localhost';
       const apiUrl =
         import.meta.env.VITE_API_URL ||
-        (import.meta.env.PROD
-          ? window.location.origin
-          : "http://localhost:3001");
+        (isProduction ? window.location.origin : "http://localhost:3001");
+      
+      console.log("Environment debug:", {
+        prod: import.meta.env.PROD,
+        hostname: window.location.hostname,
+        isProduction,
+        apiUrl
+      });
+
       const response = await fetch(`${apiUrl}/api/contact-send`, {
         method: "POST",
         headers: {
