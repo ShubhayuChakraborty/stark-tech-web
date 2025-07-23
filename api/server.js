@@ -84,7 +84,7 @@ app.use("*", (req, res) => {
 });
 
 // Only listen on port in development mode
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 Stark Tech API server running on port ${PORT}`);
     console.log(`📧 Email service configured with Gmail`);
