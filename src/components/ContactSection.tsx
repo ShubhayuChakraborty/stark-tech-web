@@ -27,16 +27,19 @@ const ContactSection = () => {
 
     try {
       // More robust production detection
-      const isProduction = import.meta.env.PROD || window.location.hostname !== 'localhost';
+      const isProduction =
+        import.meta.env.PROD || window.location.hostname !== "localhost";
       const apiUrl =
         import.meta.env.VITE_API_URL ||
-        (isProduction ? window.location.origin : "http://localhost:3001");
-      
+        (isProduction
+          ? "https://stark-tech-portfolio-9mi8mfkoc.vercel.app"
+          : "http://localhost:3001");
+
       console.log("Environment debug:", {
         prod: import.meta.env.PROD,
         hostname: window.location.hostname,
         isProduction,
-        apiUrl
+        apiUrl,
       });
 
       const response = await fetch(`${apiUrl}/api/contact-send`, {
