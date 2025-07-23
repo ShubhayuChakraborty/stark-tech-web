@@ -63,13 +63,20 @@ const sendContactEmail = async ({ name, email, message }) => {
 };
 
 export default async function handler(req, res) {
-  // Enable CORS
+  // Enhanced CORS and security headers
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
+    "Access-Control-Allow-Headers",
+    "Content-Type, Accept, User-Agent"
   );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Max-Age", "86400");
+  res.setHeader("Content-Type", "application/json");
+
+  // Security headers
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("X-XSS-Protection", "1; mode=block");
 
   if (req.method === "OPTIONS") {
     res.status(200).end();
