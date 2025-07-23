@@ -31,10 +31,7 @@ const ContactSection = () => {
         import.meta.env.PROD || window.location.hostname !== "localhost";
       const apiUrl =
         import.meta.env.VITE_API_URL ||
-        (isProduction
-          ? "https://stark-tech-portfolio-9mi8mfkoc.vercel.app"
-          : "http://localhost:3001");
-
+        (isProduction ? "https://www.shubhayu.tech/" : "http://localhost:3001");
       console.log("Environment debug:", {
         prod: import.meta.env.PROD,
         hostname: window.location.hostname,
