@@ -26,7 +26,7 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
+      const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "http://localhost:3001");
       const response = await fetch(`${apiUrl}/api/contact/send`, {
         method: "POST",
         headers: {

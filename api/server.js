@@ -29,10 +29,13 @@ app.use(
   cors({
     origin: [
       "http://localhost:8080",
-      "https://stark-tech-portfolio-o9cd6ppux.vercel.app",
+      "https://stark-tech-portfolio-eamime7rl.vercel.app",
+      "https://stark-tech-portfolio-8fcnu1bdt.vercel.app",
       /^https:\/\/stark-tech-portfolio.*\.vercel\.app$/,
     ],
     credentials: true,
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -80,10 +83,13 @@ app.use("*", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Stark Tech API server running on port ${PORT}`);
-  console.log(`📧 Email service configured with Gmail`);
-});
+// Only listen on port in development mode
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Stark Tech API server running on port ${PORT}`);
+    console.log(`📧 Email service configured with Gmail`);
+  });
+}
 
 // Export for Vercel serverless functions
 export default app;
