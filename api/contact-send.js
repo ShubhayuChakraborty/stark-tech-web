@@ -2,6 +2,13 @@ import nodemailer from "nodemailer";
 
 // Create reusable transporter object using Gmail
 const createTransporter = () => {
+  // Check if environment variables are set
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    throw new Error(
+      "Gmail credentials not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD environment variables."
+    );
+  }
+
   return nodemailer.createTransporter({
     service: "gmail",
     auth: {
@@ -118,9 +125,21 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("Contact form error:", error);
 
+    // Provide more specific error messages
+    let errorMessage = "Failed to send message. Please try again later.";
+
+    if (error.message.includes("Gmail credentials not configured")) {
+      errorMessage =
+        "Email service is not configured. Please contact the administrator.";
+    } else if (error.message.includes("Invalid login")) {
+      errorMessage =
+        "Email authentication failed. Please contact the administrator.";
+    }
+
     res.status(500).json({
       success: false,
-      message: "Failed to send message. Please try again later.",
+      message: errorMessage,
+      ...(process.env.NODE_ENV === "development" && { debug: error.message }),
     });
   }
 }
