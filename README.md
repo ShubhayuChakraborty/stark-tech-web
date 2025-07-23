@@ -1,4 +1,4 @@
-# ⚡ Stark Tech Portfolio - Full Stack  link-stark-tech-portfolio-liard.vercel.app
+# ⚡ Stark Tech Portfolio - Full Stack 
 
 A futuristic portfolio website inspired by Stark Industries, featuring a complete backend integration for contact form functionality.
 
@@ -247,7 +247,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Email: shubhayuchakraborty69@gmail.com
 - GitHub: [@ShubhayuChakraborty](https://github.com/ShubhayuChakraborty)
-- Portfolio: [Stark Tech Portfolio](https://your-domain.com)
+- Portfolio: [Stark Tech Portfolio](https://shubhayu.tech)
 
 ---
 
