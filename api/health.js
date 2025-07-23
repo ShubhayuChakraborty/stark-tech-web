@@ -16,6 +16,6 @@ export default async function handler(req, res) {
     success: true,
     message: "API is running",
     timestamp: new Date().toISOString(),
-    endpoints: ["/api/health", "/api/contact/send", "/api/jarvis/chat"],
+    endpoints: ["/api/health", "/api/contact-send", "/api/jarvis-chat"],
   });
 }

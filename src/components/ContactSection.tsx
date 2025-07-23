@@ -31,7 +31,7 @@ const ContactSection = () => {
         (import.meta.env.PROD
           ? window.location.origin
           : "http://localhost:3001");
-      const response = await fetch(`${apiUrl}/api/contact/send`, {
+      const response = await fetch(`${apiUrl}/api/contact-send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
