@@ -27,7 +27,11 @@ const limiter = rateLimit({
 // CORS configuration
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:8080",
+    origin: [
+      "http://localhost:8080",
+      "https://stark-tech-portfolio-o9cd6ppux.vercel.app",
+      /^https:\/\/stark-tech-portfolio.*\.vercel\.app$/,
+    ],
     credentials: true,
   })
 );
@@ -80,3 +84,6 @@ app.listen(PORT, () => {
   console.log(`🚀 Stark Tech API server running on port ${PORT}`);
   console.log(`📧 Email service configured with Gmail`);
 });
+
+// Export for Vercel serverless functions
+export default app;
